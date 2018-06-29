@@ -32,7 +32,7 @@ let createPlanet = (radius, segments, imgArr) => {
       bumpMap: new THREE.TextureLoader().load( imgArr[1] ),
       bumpScale:   0.1,
       specularMap: new THREE.TextureLoader().load( imgArr[3] ),
-      specular: new THREE.Color('grey')								
+      specular: new THREE.Color('grey')					
     })
   )
 }
@@ -58,7 +58,8 @@ let createStars = (radius, segments) => {
 
 //Add planet, clouds, stars to DOM
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
-let planetEarth = createPlanet( ( window.innerWidth > window.innerHeight ? window.innerHeight / 250 : window.innerWidth / 250 ), 50, [
+let focusRadius =  window.innerWidth > window.innerHeight ? window.innerHeight / 400 : window.innerWidth / 400 
+let planetEarth = createPlanet( focusRadius, 50, [
   './assets/images/earth.jpg', 
   './assets/images/earth-bump.jpg', 
   './assets/images/earth-water.png'
@@ -66,11 +67,18 @@ let planetEarth = createPlanet( ( window.innerWidth > window.innerHeight ? windo
 )
 scene.add(planetEarth)
 
-let clouds = createClouds( ( window.innerWidth > window.innerHeight ? window.innerHeight / 250 : window.innerWidth / 250 ), 50 )
+let clouds = createClouds( focusRadius, 50 )
 scene.add(clouds)
 
 let stars = createStars(90, 64)
 scene.add(stars)
+
+let moon = createPlanet( .5, 50, [
+  './assets/images/moon.jpg', 
+  ]
+)
+moon.position.set(2,2,2)
+scene.add(moon)
 
 //Render
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -81,6 +89,8 @@ let render = function () {
     planetEarth.rotation.x += 0.0001
     clouds.rotation.y += 0.0007
     clouds.rotation.x += 0.0001
+    moon.rotation.y -= 0.001
+    moon.rotation.x -= 0.001
 
     renderer.render(scene, camera)
 }

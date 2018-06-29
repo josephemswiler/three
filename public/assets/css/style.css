@@ -4,15 +4,85 @@ body {
 	overflow: hidden;
 }
 
-canvas { 
+/* canvas { 
     width: 100%; height: 100%;
+} */
+
+.next-button-wrapper {
+	text-align: center;
+	position: absolute; 
+	bottom: 100px; 
+	left: 0;
+	width: 100%;
 }
 
-img {
-	width: 128px;
-	height: 128px;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	z-index: 1;
+.next-btn {
+	color: #ff3f34;
+	border-radius: 2px;
 }
+
+.fa-angle-right {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+  }
+  @-webkit-keyframes bounce {
+    0%, 100% {
+      -webkit-transform: translateX(0px);
+      color: #000;
+    }
+    50% {
+      -webkit-transform: translateX(5px);
+      color: #ff3f34;
+    }
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(0px);
+      color: #000
+    }
+    50% {
+      transform: translateX(5px);
+      color: #ff3f34;
+    }
+  }
+
+.fa-angle-left {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+  }
+  @-webkit-keyframes bounce {
+    0%, 100% {
+      -webkit-transform: translateX(0px);
+      color: #ff3f34;
+    }
+    50% {
+      -webkit-transform: translateX(5px);
+      color: #000;
+    }
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(0px);
+      color: #ff3f34;
+    }
+    50% {
+      transform: translateX(5px);
+      color: #000;
+    }
+  }
