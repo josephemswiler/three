@@ -90,7 +90,7 @@ let render = function () {
     clouds.rotation.y += 0.0007
     clouds.rotation.x += 0.0001
     moon.rotation.y -= 0.001
-    moon.rotation.x -= 0.001
+    // moon.rotation.x -= 0.001
 
     renderer.render(scene, camera)
 }
@@ -162,7 +162,7 @@ document.querySelector('.next-btn').onclick = () => {
   }
 
   let moonTarget = {
-      x: -0.5,
+      x: window.innerWidth > window.innerHeight ? window.innerHeight / -1200 : window.innerWidth / -1200,
       y: 0,
       z: 0
   }
@@ -256,6 +256,90 @@ document.querySelector('.next-btn').onclick = () => {
 
   // tweenAfter.start()
 
+}
+
+document.querySelector('.back-btn').onclick = () => {
+
+  let moonOrigin = {
+    x: moon.position.x,
+    y: moon.position.y,
+    z: moon.position.z
+  }
+
+  let moonTarget = {
+      x: 2,
+      y: 2,
+      z: 2
+  }
+
+  let earthOrigin = {
+    x: planetEarth.position.x,
+    y: planetEarth.position.y,
+    z: planetEarth.position.z
+  }
+
+  let earthTarget = {
+      x: 0,
+      y: 0,
+      z: 0
+  }
+
+  let cloudsOrigin = {
+    x: clouds.position.x,
+    y: clouds.position.y,
+    z: clouds.position.z
+  }
+
+  let cloudsTarget = {
+      x: 0,
+      y: 0,
+      z: 0
+  }
+
+  let zoom = {
+    value: camera.position.z
+  }
+
+  let zoomEnd = {
+    value: 10
+  }
+
+  let tweenMoon = new TWEEN.Tween(moonOrigin).to(moonTarget, 1000)
+  let tweenEarth = new TWEEN.Tween(earthOrigin).to(earthTarget, 1000)
+  let tweenClouds = new TWEEN.Tween(cloudsOrigin).to(cloudsTarget, 1000)
+  let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
+  
+  tweenEarth.onUpdate(function() {
+    planetEarth.position.x = earthOrigin.x
+    planetEarth.position.y = earthOrigin.y
+    planetEarth.position.z = earthOrigin.z
+  })
+
+  tweenMoon.onUpdate(function() {
+    moon.position.x = moonOrigin.x
+    moon.position.y = moonOrigin.y
+    moon.position.z = moonOrigin.z
+  })
+
+  tweenClouds.onUpdate(function() {
+    clouds.position.x = cloudsOrigin.x
+    clouds.position.y = cloudsOrigin.y
+    clouds.position.z = cloudsOrigin.z
+  })
+
+  tween.onUpdate(() => {
+    camera.position.z = zoom.value
+  })
+
+  tweenMoon.easing(TWEEN.Easing.Exponential.Out)
+  tweenEarth.easing(TWEEN.Easing.Exponential.Out)
+  tweenClouds.easing(TWEEN.Easing.Exponential.Out)  
+  tween.easing(TWEEN.Easing.Exponential.Out)
+
+  tweenMoon.start()
+  tweenEarth.start()
+  tweenClouds.start()
+  tween.start()
 }
 
 
