@@ -17,8 +17,12 @@ body {
 }
 
 .next-btn {
-	color: #ff3f34;
+	color: #E8AE5F;
 	border-radius: 2px;
+}
+
+.next-btn:hover {
+	color: #000;
 }
 
 .fa-angle-right {
@@ -36,21 +40,21 @@ body {
   @-webkit-keyframes bounce {
     0%, 100% {
       -webkit-transform: translateX(0px);
-      color: #000;
+      color: #E8AE5F;
     }
     50% {
-      -webkit-transform: translateX(5px);
-      color: #ff3f34;
+      -webkit-transform: translateX(-5px);
+      color: #000;
     }
   }
   @keyframes bounce {
     0%, 100% {
       transform: translateX(0px);
-      color: #000
+      color: #E8AE5F;
     }
     50% {
-      transform: translateX(5px);
-      color: #ff3f34;
+      transform: translateX(-5px);
+      color: #000;
     }
   }
 
@@ -63,23 +67,23 @@ body {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
-    -webkit-animation-name: bounce;
-    animation-name: bounce;
+    -webkit-animation-name: bounceLeft;
+    animation-name: bounceLeft;
   }
-  @-webkit-keyframes bounce {
+  @-webkit-keyframes bounceLeft {
     0%, 100% {
       -webkit-transform: translateX(0px);
-      color: #ff3f34;
+      color: #E8AE5F;
     }
     50% {
       -webkit-transform: translateX(5px);
       color: #000;
     }
   }
-  @keyframes bounce {
+  @keyframes bounceLeft {
     0%, 100% {
       transform: translateX(0px);
-      color: #ff3f34;
+      color: #E8AE5F;
     }
     50% {
       transform: translateX(5px);
