@@ -80,6 +80,13 @@ let moon = createPlanet( .5, 50, [
 moon.position.set(2,2,2)
 scene.add(moon)
 
+let mars = createPlanet( .8, 50, [
+  './assets/images/mars.jpg', 
+  ]
+)
+mars.position.set(-3,10,-20)
+scene.add(mars)
+
 //Render
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let render = function () {
@@ -90,7 +97,7 @@ let render = function () {
     clouds.rotation.y += 0.0007
     clouds.rotation.x += 0.0001
     moon.rotation.y -= 0.001
-    // moon.rotation.x -= 0.001
+    mars.rotation.y += 0.001
 
     renderer.render(scene, camera)
 }
@@ -340,9 +347,246 @@ document.querySelector('.back-btn').onclick = () => {
   tweenEarth.start()
   tweenClouds.start()
   tween.start()
+
+  let marsOrigin = {
+    x: mars.position.x,
+    y: mars.position.y,
+    z: mars.position.z
+  }
+
+  let marsTarget = {
+      x: -3,
+      y: 10,
+      z: -20
+  }
+
+  let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 1000)
+
+  tweenMars.onUpdate(function() {
+    mars.position.x = marsOrigin.x
+    mars.position.y = marsOrigin.y
+    mars.position.z = marsOrigin.z
+  })
+
+  tweenMars.easing(TWEEN.Easing.Exponential.Out)
+
+  tweenMars.start()
+
 }
 
+// document.querySelector('.mars-btn').onclick = () => {
 
+//   let marsOrigin = {
+//     x: moon.position.x,
+//     y: moon.position.y,
+//     z: moon.position.z
+//   }
+
+//   let marsTarget = {
+//       x: 0,
+//       y: 0,
+//       z: 0
+//   }
+
+//   let moonOrigin = {
+//     x: moon.position.x,
+//     y: moon.position.y,
+//     z: moon.position.z
+//   }
+
+//   let moonTarget = {
+//       x: 2,
+//       y: 6,
+//       z: 5
+//   }
+
+//   let earthOrigin = {
+//     x: planetEarth.position.x,
+//     y: planetEarth.position.y,
+//     z: planetEarth.position.z
+//   }
+
+//   let earthTarget = {
+//     x: -5,
+//     y: -5,
+//     z: 5
+//   }
+
+//   let cloudsOrigin = {
+//     x: clouds.position.x,
+//     y: clouds.position.y,
+//     z: clouds.position.z
+//   }
+
+//   let cloudsTarget = {
+//     x: -5,
+//     y: -5,
+//     z: 5
+//   }
+
+//   let zoom = {
+//     value: camera.position.z
+//   }
+
+//   let zoomEnd = {
+//     value: 3
+//   }
+
+//   let tweenMoon = new TWEEN.Tween(moonOrigin).to(moonTarget, 2000)
+//   let tweenEarth = new TWEEN.Tween(earthOrigin).to(earthTarget, 2000)
+//   let tweenClouds = new TWEEN.Tween(cloudsOrigin).to(cloudsTarget, 2000)
+//   let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 2000)
+//   let tween = new TWEEN.Tween(zoom).to(zoomEnd, 2000)
+  
+//   tweenEarth.onUpdate(function() {
+//     planetEarth.position.x = earthOrigin.x
+//     planetEarth.position.y = earthOrigin.y
+//     planetEarth.position.z = earthOrigin.z
+//   })
+
+//   tweenMoon.onUpdate(function() {
+//     moon.position.x = moonOrigin.x
+//     moon.position.y = moonOrigin.y
+//     moon.position.z = moonOrigin.z
+//   })
+
+//   tweenClouds.onUpdate(function() {
+//     clouds.position.x = cloudsOrigin.x
+//     clouds.position.y = cloudsOrigin.y
+//     clouds.position.z = cloudsOrigin.z
+//   })
+
+//   tweenMars.onUpdate(function() {
+//     mars.position.x = marsOrigin.x
+//     mars.position.y = marsOrigin.y
+//     mars.position.z = marsOrigin.z
+//   })
+
+//   tween.onUpdate(() => {
+//     camera.position.z = zoom.value
+//   })
+
+//   tweenMoon.easing(TWEEN.Easing.Exponential.Out)
+//   tweenEarth.easing(TWEEN.Easing.Exponential.Out)
+//   tweenClouds.easing(TWEEN.Easing.Exponential.Out)  
+//   tweenMars.easing(TWEEN.Easing.Exponential.Out)  
+//   tween.easing(TWEEN.Easing.Exponential.Out)
+
+//   tweenMoon.start()
+//   tweenEarth.start()
+//   tweenClouds.start()
+//   tweenMars.start()
+//   tween.start()
+// }
+
+document.querySelector('.mars-btn').onclick = () => {
+
+  let moonOrigin = {
+    x: moon.position.x,
+    y: moon.position.y,
+    z: moon.position.z
+  }
+
+  let moonTarget = {
+      x: 4,
+      y: 4,
+      z: 4
+  }
+
+  let earthOrigin = {
+    x: planetEarth.position.x,
+    y: planetEarth.position.y,
+    z: planetEarth.position.z
+  }
+
+  let earthTarget = {
+      x: -5,
+      y: -5,
+      z: 5
+  }
+
+  let cloudsOrigin = {
+    x: clouds.position.x,
+    y: clouds.position.y,
+    z: clouds.position.z
+  }
+
+  let cloudsTarget = {
+      x: -5,
+      y: -5,
+      z: 5
+  }
+
+  let zoom = {
+    value: camera.position.z
+  }
+
+  let zoomEnd = {
+    value: 3
+  }
+
+  let tweenMoon = new TWEEN.Tween(moonOrigin).to(moonTarget, 1000)
+  let tweenEarth = new TWEEN.Tween(earthOrigin).to(earthTarget, 1000)
+  let tweenClouds = new TWEEN.Tween(cloudsOrigin).to(cloudsTarget, 1000)
+  let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
+  
+  tweenEarth.onUpdate(function() {
+    planetEarth.position.x = earthOrigin.x
+    planetEarth.position.y = earthOrigin.y
+    planetEarth.position.z = earthOrigin.z
+  })
+
+  tweenMoon.onUpdate(function() {
+    moon.position.x = moonOrigin.x
+    moon.position.y = moonOrigin.y
+    moon.position.z = moonOrigin.z
+  })
+
+  tweenClouds.onUpdate(function() {
+    clouds.position.x = cloudsOrigin.x
+    clouds.position.y = cloudsOrigin.y
+    clouds.position.z = cloudsOrigin.z
+  })
+
+  tween.onUpdate(() => {
+    camera.position.z = zoom.value
+  })
+
+  tweenMoon.easing(TWEEN.Easing.Exponential.Out)
+  tweenEarth.easing(TWEEN.Easing.Exponential.Out)
+  tweenClouds.easing(TWEEN.Easing.Exponential.Out)  
+  tween.easing(TWEEN.Easing.Exponential.Out)
+
+  tweenMoon.start()
+  tweenEarth.start()
+  tweenClouds.start()
+  tween.start()
+
+  let marsOrigin = {
+    x: mars.position.x,
+    y: mars.position.y,
+    z: mars.position.z
+  }
+
+  let marsTarget = {
+      x: 0,
+      y: 0,
+      z: -1
+  }
+
+  let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 1000)
+
+  tweenMars.onUpdate(function() {
+    mars.position.x = marsOrigin.x
+    mars.position.y = marsOrigin.y
+    mars.position.z = marsOrigin.z
+  })
+
+  tweenMars.easing(TWEEN.Easing.Exponential.Out)
+
+  tweenMars.start()
+
+}
 
 function animate() {
   camera.updateProjectionMatrix()
