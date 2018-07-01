@@ -169,23 +169,8 @@ document.querySelector('.next-btn').onclick = () => {
   let view = 'moon'
   moveMoon(view)
   moveEarth(view)
-
-  let zoom = {
-    value: camera.position.z
-  }
-
-  let zoomEnd = {
-    value: 3
-  }
-
-  let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
-
-  tween.onUpdate(() => {
-    camera.position.z = zoom.value
-  })
-
-  tween.easing(TWEEN.Easing.Exponential.Out)
-  tween.start()
+  moveZoom(view)
+  moveMars(view)
 }
 
 document.querySelector('.back-btn').onclick = () => {
@@ -193,7 +178,11 @@ document.querySelector('.back-btn').onclick = () => {
   let view = 'earth'
   moveMoon(view)
   moveEarth(view)
+  moveZoom(view)
+  moveMars(view)
+}
 
+let moveZoom = view => {
   let zoom = {
     value: camera.position.z
   }
@@ -202,38 +191,21 @@ document.querySelector('.back-btn').onclick = () => {
     value: 10
   }
 
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        zoomEnd.value = 3
+      break
+  }
+
   let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
 
   tween.onUpdate(() => {
     camera.position.z = zoom.value
   })
-
   tween.easing(TWEEN.Easing.Exponential.Out)
   tween.start()
-
-  let marsOrigin = {
-    x: mars.position.x,
-    y: mars.position.y,
-    z: mars.position.z
-  }
-
-  let marsTarget = {
-    x: -3,
-    y: 10,
-    z: -20
-  }
-
-  let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 1000)
-
-  tweenMars.onUpdate(function () {
-    mars.position.x = marsOrigin.x
-    mars.position.y = marsOrigin.y
-    mars.position.z = marsOrigin.z
-  })
-
-  tweenMars.easing(TWEEN.Easing.Exponential.Out)
-
-  tweenMars.start()
 }
 
 let moveEarth = view => {
@@ -295,40 +267,32 @@ let moveEarth = view => {
   tweenClouds.start()
 }
 
-
-
-
-
-
-
-
-
-
 let moveMoon = view => {
   let moonOrigin = {
     x: moon.position.x,
     y: moon.position.y,
     z: moon.position.z
   }
-  let moonTarget = {}
+  let x = 2
+  let y = 2
+  let z = 2
 
   switch (view) {
     case 'earth':
-      moonTarget = {
-        x: 2,
-        y: 2,
-        z: 2
-      }
       break
     case 'moon':
-      moonTarget = {
-        x: window.innerWidth > window.innerHeight
+        x = window.innerWidth > window.innerHeight
           ? window.innerHeight / -1200
-          : window.innerWidth / -1200,
-        y: 0,
-        z: 0
-      }
+          : window.innerWidth / -1200
+        y = 0
+        z = 0
       break
+  }
+
+  let moonTarget = {
+    x: x,
+    y: y,
+    z: z
   }
 
   let tweenMoon = new TWEEN.Tween(moonOrigin).to(moonTarget, 1000)
@@ -342,6 +306,58 @@ let moveMoon = view => {
   tweenMoon.easing(TWEEN.Easing.Exponential.Out)
   tweenMoon.start()
 }
+
+
+
+
+
+let moveMars = view => {
+  let marsOrigin = {
+    x: mars.position.x,
+    y: mars.position.y,
+    z: mars.position.z
+  }
+
+  let x = -3
+  let y = 10
+  let z = -20
+
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        x = -2
+        y = 5
+        z = -10
+      break
+    case 'mars':
+      x = window.innerWidth > window.innerHeight
+      ? window.innerHeight / -1200
+      : window.innerWidth / -1200
+      y = 0
+      z = -1
+    break
+  }
+
+  let marsTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
+  let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 1000)
+
+  tweenMars.onUpdate(function () {
+    mars.position.x = marsOrigin.x
+    mars.position.y = marsOrigin.y
+    mars.position.z = marsOrigin.z
+  })
+  tweenMars.easing(TWEEN.Easing.Exponential.Out)
+  tweenMars.start()
+}
+
+
+
 
 document.querySelector('.mars-btn').onclick = () => {
   let moonOrigin = {
@@ -425,29 +441,8 @@ document.querySelector('.mars-btn').onclick = () => {
   tweenClouds.start()
   tween.start()
 
-  let marsOrigin = {
-    x: mars.position.x,
-    y: mars.position.y,
-    z: mars.position.z
-  }
-
-  let marsTarget = {
-    x: 0,
-    y: 0,
-    z: -1
-  }
-
-  let tweenMars = new TWEEN.Tween(marsOrigin).to(marsTarget, 1000)
-
-  tweenMars.onUpdate(function () {
-    mars.position.x = marsOrigin.x
-    mars.position.y = marsOrigin.y
-    mars.position.z = marsOrigin.z
-  })
-
-  tweenMars.easing(TWEEN.Easing.Exponential.Out)
-
-  tweenMars.start()
+  let view = 'mars'
+  moveMars(view)
 }
 
 function animate () {
