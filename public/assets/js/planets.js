@@ -70,6 +70,9 @@ let createStars = (radius, segments) => {
 let focusRadius = window.innerWidth > window.innerHeight
   ? window.innerHeight / 400
   : window.innerWidth / 400
+
+  console.log(focusRadius)
+
 let planetEarth = createPlanet(focusRadius, 50, [
   './assets/images/earth.jpg',
   './assets/images/earth-bump.jpg',
@@ -83,13 +86,17 @@ scene.add(clouds)
 let stars = createStars(90, 64)
 scene.add(stars)
 
-let moon = createPlanet(0.5, 50, ['./assets/images/moon.jpg'])
+let moon = createPlanet(focusRadius / 5, 50, ['./assets/images/moon.jpg'])
 moon.position.set(2, 2, 2)
 scene.add(moon)
 
-let mars = createPlanet(0.8, 50, ['./assets/images/mars.jpg'])
+let mars = createPlanet(focusRadius / 3, 50, ['./assets/images/mars.jpg'])
 mars.position.set(-3, 10, -20)
 scene.add(mars)
+
+let jupiter = createPlanet(focusRadius / 1.15, 50, ['./assets/images/jupiter.jpg'])
+jupiter.position.set(-3, 14, -35)
+scene.add(jupiter)
 
 // Render
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -102,6 +109,7 @@ let render = function () {
   clouds.rotation.x += 0.0001
   moon.rotation.y -= 0.001
   mars.rotation.y += 0.001
+  jupiter.rotation.y -= 0.01
 
   renderer.render(scene, camera)
 }
@@ -130,57 +138,15 @@ window.onload = () => {
   }, 1000)
 }
 
-// document.querySelector('.next-btn').onclick = () => {
+$('.planet-btn').click(function () {
 
-//   let zoom = {
-//     value: camera.position.z
-//   }
-//   let zoomEnd = {
-//     value: 8
-//   }
-//   let zoomTwo = {
-//     value: camera.position.x,
-//   }
-//   let zoomEndTwo = {
-//     value: 3
-//   }
-//   let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
-//   let tweenTwo = new TWEEN.Tween(zoomTwo).to(zoomEndTwo, 1000)
-
-//   tween.onUpdate(function() {
-//     camera.position.z = zoom.value
-//   })
-
-//   tweenTwo.onUpdate(function() {
-//     camera.position.x = zoomTwo.value
-//   })
-
-//   tween.easing(TWEEN.Easing.Quartic.InOut)
-
-//   tweenTwo.easing(TWEEN.Easing.Exponential.Out)
-
-//   tween.chain( tweenTwo )
-
-//   tween.start()
-// }
-
-document.querySelector('.next-btn').onclick = () => {
-
-  let view = 'moon'
+  let view = this.dataset.name
   moveMoon(view)
   moveEarth(view)
   moveZoom(view)
   moveMars(view)
-}
-
-document.querySelector('.back-btn').onclick = () => {
-
-  let view = 'earth'
-  moveMoon(view)
-  moveEarth(view)
-  moveZoom(view)
-  moveMars(view)
-}
+  moveJupiter(view)
+})
 
 let moveZoom = view => {
   let zoom = {
@@ -195,6 +161,8 @@ let moveZoom = view => {
     case 'earth':
       break
     case 'moon':
+    case 'mars':
+    case 'jupiter':
         zoomEnd.value = 3
       break
   }
@@ -229,10 +197,12 @@ let moveEarth = view => {
     case 'earth':
       break
     case 'moon':
-        x = -5
-        y = -5
-        z = 5
-      break
+    case 'mars':
+    case 'jupiter':
+      x = -5
+      y = -5
+      z = 5
+    break
   }
 
   let earthTarget = {
@@ -281,12 +251,16 @@ let moveMoon = view => {
     case 'earth':
       break
     case 'moon':
-        x = window.innerWidth > window.innerHeight
-          ? window.innerHeight / -1200
-          : window.innerWidth / -1200
+        x = focusRadius / -4
         y = 0
         z = 0
       break
+    case 'mars':
+    case 'jupiter':
+      x = focusRadius / -4
+      y = -5
+      z = 5
+    break
   }
 
   let moonTarget = {
@@ -306,10 +280,6 @@ let moveMoon = view => {
   tweenMoon.easing(TWEEN.Easing.Exponential.Out)
   tweenMoon.start()
 }
-
-
-
-
 
 let moveMars = view => {
   let marsOrigin = {
@@ -331,11 +301,14 @@ let moveMars = view => {
         z = -10
       break
     case 'mars':
-      x = window.innerWidth > window.innerHeight
-      ? window.innerHeight / -1200
-      : window.innerWidth / -1200
+      x = focusRadius / -3
       y = 0
-      z = -1
+      z = 0
+    break
+    case 'jupiter':
+      x = -4
+      y = -1
+      z = 5
     break
   }
 
@@ -356,93 +329,52 @@ let moveMars = view => {
   tweenMars.start()
 }
 
-
-
-
-document.querySelector('.mars-btn').onclick = () => {
-  let moonOrigin = {
-    x: moon.position.x,
-    y: moon.position.y,
-    z: moon.position.z
+let moveJupiter = view => {
+  let jupiterOrigin = {
+    x: jupiter.position.x,
+    y: jupiter.position.y,
+    z: jupiter.position.z
   }
 
-  let moonTarget = {
-    x: 4,
-    y: 4,
-    z: 4
+  let x = -3
+  let y = 14
+  let z = -35
+
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        x = -2
+        y = 10
+        z = -30
+      break
+    case 'mars':
+      x = -2
+      y = 6
+      z = -25
+    break
+    case 'jupiter':
+      x = focusRadius / -1.15
+      y = 0
+      z = -2
+    break
   }
 
-  let earthOrigin = {
-    x: planetEarth.position.x,
-    y: planetEarth.position.y,
-    z: planetEarth.position.z
+  let jupiterTarget = {
+    x: x,
+    y: y,
+    z: z
   }
 
-  let earthTarget = {
-    x: -5,
-    y: -5,
-    z: 5
-  }
+  let tweenJupiter = new TWEEN.Tween(jupiterOrigin).to(jupiterTarget, 1000)
 
-  let cloudsOrigin = {
-    x: clouds.position.x,
-    y: clouds.position.y,
-    z: clouds.position.z
-  }
-
-  let cloudsTarget = {
-    x: -5,
-    y: -5,
-    z: 5
-  }
-
-  let zoom = {
-    value: camera.position.z
-  }
-
-  let zoomEnd = {
-    value: 3
-  }
-
-  let tweenMoon = new TWEEN.Tween(moonOrigin).to(moonTarget, 1000)
-  let tweenEarth = new TWEEN.Tween(earthOrigin).to(earthTarget, 1000)
-  let tweenClouds = new TWEEN.Tween(cloudsOrigin).to(cloudsTarget, 1000)
-  let tween = new TWEEN.Tween(zoom).to(zoomEnd, 1000)
-
-  tweenEarth.onUpdate(function () {
-    planetEarth.position.x = earthOrigin.x
-    planetEarth.position.y = earthOrigin.y
-    planetEarth.position.z = earthOrigin.z
+  tweenJupiter.onUpdate(function () {
+    jupiter.position.x = jupiterOrigin.x
+    jupiter.position.y = jupiterOrigin.y
+    jupiter.position.z = jupiterOrigin.z
   })
-
-  tweenMoon.onUpdate(function () {
-    moon.position.x = moonOrigin.x
-    moon.position.y = moonOrigin.y
-    moon.position.z = moonOrigin.z
-  })
-
-  tweenClouds.onUpdate(function () {
-    clouds.position.x = cloudsOrigin.x
-    clouds.position.y = cloudsOrigin.y
-    clouds.position.z = cloudsOrigin.z
-  })
-
-  tween.onUpdate(() => {
-    camera.position.z = zoom.value
-  })
-
-  tweenMoon.easing(TWEEN.Easing.Exponential.Out)
-  tweenEarth.easing(TWEEN.Easing.Exponential.Out)
-  tweenClouds.easing(TWEEN.Easing.Exponential.Out)
-  tween.easing(TWEEN.Easing.Exponential.Out)
-
-  tweenMoon.start()
-  tweenEarth.start()
-  tweenClouds.start()
-  tween.start()
-
-  let view = 'mars'
-  moveMars(view)
+  tweenJupiter.easing(TWEEN.Easing.Exponential.Out)
+  tweenJupiter.start()
 }
 
 function animate () {
