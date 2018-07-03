@@ -65,15 +65,15 @@ let createStars = (radius, segments) => {
   )
 }
 
-// let createRings = (radius, segments) => {
-//   return new THREE.Mesh(
-//     new THREE.SphereGeometry(radius, segments, segments),
-//     new THREE.MeshBasicMaterial({
-//       map: new THREE.TextureLoader().load('./assets/images/stars.png'),
-//       side: THREE.BackSide
-//     })
-//   )
-// }
+let createRings = (inner, outer) => {
+  return new THREE.Mesh(
+    new THREE.RingGeometry( inner + 0.8, outer, 32 ),
+    new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load('./assets/images/saturn-ring.png'),
+      side: THREE.DoubleSide
+    })
+  )
+}
 
 // Add planet, clouds, stars to DOM
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -112,16 +112,18 @@ let saturn = createPlanet(focusRadius / 2, 50, ['./assets/images/saturn.jpg'])
 saturn.position.set(-15, -10, -45)
 scene.add(saturn)
 
-// geometry    = new THREE.TorusGeometry( 100, .5 , 50 ,50); 
-// material    = new THREE.MeshNormalMaterial(); 
-// mesh    = new THREE.Mesh( geometry, material );
+let saturnRingOne = createRings(focusRadius / 3, 1.8)
+saturnRingOne.position.set(-15, -10, -45)
+saturnRingOne.rotation.x = 10
+scene.add(saturnRingOne)
 
-// let rings = createClouds(focusRadius / 2, 50, ['./assets/images/saturn-ring.png'])
-// rings.position.set(3, 20, -45)
-// scene.add(rings)
+let saturnRingTwo = createRings(focusRadius / 5, 1.5)
+saturnRingTwo.position.set(-15, -10, -45)
+saturnRingTwo.rotation.x = 10
+scene.add(saturnRingTwo)
 
 let uranus = createPlanet(focusRadius / 3.5, 50, ['./assets/images/uranus.jpg'])
-uranus.position.set(-30, 20, -55)
+uranus.position.set(-18, 20, -55)
 scene.add(uranus)
 
 let neptune = createPlanet(focusRadius / 4.5, 50, ['./assets/images/neptune.jpg'])
@@ -141,6 +143,10 @@ let render = function () {
   mars.rotation.y += 0.001
   jupiter.rotation.y -= 0.01
   saturn.rotation.y += 0.008
+  saturnRingOne.rotation.x -= 0.001
+  saturnRingOne.rotation.y -= 0.001
+  saturnRingTwo.rotation.x -= 0.001
+  saturnRingTwo.rotation.y -= 0.001
   uranus.rotation.y -= 0.008
   neptune.rotation.y += 0.001
 
@@ -439,6 +445,18 @@ let moveSaturn = view => {
     z: saturn.position.z
   }
 
+  let saturnRingOneOrigin = {
+    x: saturnRingOne.position.x,
+    y: saturnRingOne.position.y,
+    z: saturnRingOne.position.z
+  }
+
+  let saturnRingTwoOrigin = {
+    x: saturnRingTwo.position.x,
+    y: saturnRingTwo.position.y,
+    z: saturnRingTwo.position.z
+  }
+
   let x = -15
   let y = -10
   let z = -45
@@ -480,7 +498,21 @@ let moveSaturn = view => {
     z: z
   }
 
+  let saturnRingOneTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
+  let saturnRingTwoTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
   let tweenSaturn = new TWEEN.Tween(saturnOrigin).to(saturnTarget, 1000)
+  let tweenSaturnRingOne = new TWEEN.Tween(saturnRingOneOrigin).to(saturnRingOneTarget, 1000)
+  let tweenSaturnRingTwo = new TWEEN.Tween(saturnRingTwoOrigin).to(saturnRingTwoTarget, 1000)
 
   tweenSaturn.onUpdate(function () {
     saturn.position.x = saturnOrigin.x
@@ -489,6 +521,22 @@ let moveSaturn = view => {
   })
   tweenSaturn.easing(TWEEN.Easing.Exponential.Out)
   tweenSaturn.start()
+
+  tweenSaturnRingOne.onUpdate(function () {
+    saturnRingOne.position.x = saturnRingOneOrigin.x
+    saturnRingOne.position.y = saturnRingOneOrigin.y
+    saturnRingOne.position.z = saturnRingOneOrigin.z
+  })
+  tweenSaturnRingOne.easing(TWEEN.Easing.Exponential.Out)
+  tweenSaturnRingOne.start()
+
+  tweenSaturnRingTwo.onUpdate(function () {
+    saturnRingTwo.position.x = saturnRingTwoOrigin.x
+    saturnRingTwo.position.y = saturnRingTwoOrigin.y
+    saturnRingTwo.position.z = saturnRingTwoOrigin.z
+  })
+  tweenSaturnRingTwo.easing(TWEEN.Easing.Exponential.Out)
+  tweenSaturnRingTwo.start()
 }
 
 let moveUranus = view => {
@@ -498,7 +546,7 @@ let moveUranus = view => {
     z: uranus.position.z
   }
 
-  let x = -30
+  let x = -18
   let y = 20
   let z = -55
 
@@ -506,7 +554,7 @@ let moveUranus = view => {
     case 'earth':
       break
     case 'moon':
-        x = -20
+        x = -16
         y = 14
         z = -35
       break
