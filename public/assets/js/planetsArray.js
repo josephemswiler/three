@@ -2,8 +2,8 @@ let focusRadius = window.innerWidth > window.innerHeight
   ? window.innerHeight / 400
   : window.innerWidth / 400
 
-let planets = [
-    {
+let planets = {
+    mercury: {
         name: 'mercury',
         type: 'planet',
         radius: focusRadius / 4,
@@ -32,4 +32,4 @@ let planets = [
         },
         zoomTarget: 3,
     }
-]
+}
