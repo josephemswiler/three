@@ -67,7 +67,7 @@ let createStars = (radius, segments) => {
 
 let createRings = (inner, outer) => {
   return new THREE.Mesh(
-    new THREE.RingGeometry( inner + 0.8, outer, 32 ),
+    new THREE.RingGeometry(inner + 0.8, outer, 32),
     new THREE.MeshBasicMaterial({
       map: new THREE.TextureLoader().load('./assets/images/saturn-ring.png'),
       side: THREE.DoubleSide
@@ -75,13 +75,66 @@ let createRings = (inner, outer) => {
   )
 }
 
+let theCreator = (type, propOne, propTwo, images) => {
+  switch (type) {
+    case 'planet':
+      return new THREE.Mesh(
+        new THREE.SphereGeometry(
+          propOne,
+          propTwo,
+          propTwo,
+          0,
+          Math.PI * 2,
+          0,
+          Math.PI * 2
+        ),
+        new THREE.MeshPhongMaterial({
+          map: new THREE.TextureLoader().load(images[0]),
+          bumpMap: new THREE.TextureLoader().load(images[1]),
+          bumpScale: 0.1,
+          specularMap: new THREE.TextureLoader().load(images[3]),
+          specular: new THREE.Color('grey')
+        })
+      )
+    case 'clouds':
+      return new THREE.Mesh(
+        new THREE.SphereGeometry(propOne + 0.003, propTwo, propTwo),
+        new THREE.MeshPhongMaterial({
+          map: new THREE.TextureLoader().load(images[0]),
+          transparent: true
+        })
+      )
+    case 'rings':
+      return new THREE.Mesh(
+        new THREE.RingGeometry(propOne + 0.8, propTwo, 32),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load(images[0]),
+          side: THREE.DoubleSide
+        })
+      )
+    case 'stars':
+      return new THREE.Mesh(
+        new THREE.SphereGeometry(propOne, propTwo, propTwo),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load(images[0]),
+          side: THREE.BackSide
+        })
+      )
+  }
+}
+
 // Add planet, clouds, stars to DOM
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
+let scale = ratio => {
+  window.innerWidth > window.innerHeight
+    ? window.innerHeight / ratio
+    : window.innerWidth / ratio
+}
 let focusRadius = window.innerWidth > window.innerHeight
   ? window.innerHeight / 400
   : window.innerWidth / 400
 
-  console.log(focusRadius)
+console.log(focusRadius)
 
 let planetEarth = createPlanet(focusRadius, 50, [
   './assets/images/earth.jpg',
@@ -104,7 +157,9 @@ let mars = createPlanet(focusRadius / 3, 50, ['./assets/images/mars.jpg'])
 mars.position.set(-3, 10, -20)
 scene.add(mars)
 
-let jupiter = createPlanet(focusRadius / 1.15, 50, ['./assets/images/jupiter.jpg'])
+let jupiter = createPlanet(focusRadius / 1.15, 50, [
+  './assets/images/jupiter.jpg'
+])
 jupiter.position.set(-2, 14, -35)
 scene.add(jupiter)
 
@@ -126,7 +181,9 @@ let uranus = createPlanet(focusRadius / 3.5, 50, ['./assets/images/uranus.jpg'])
 uranus.position.set(-18, 20, -55)
 scene.add(uranus)
 
-let neptune = createPlanet(focusRadius / 4.5, 50, ['./assets/images/neptune.jpg'])
+let neptune = createPlanet(focusRadius / 4.5, 50, [
+  './assets/images/neptune.jpg'
+])
 neptune.position.set(20, -10, -65)
 scene.add(neptune)
 
@@ -178,7 +235,6 @@ window.onload = () => {
 }
 
 $('.planet-btn').click(function () {
-
   let view = this.dataset.name
   moveMoon(view)
   moveEarth(view)
@@ -208,7 +264,7 @@ let moveZoom = view => {
     case 'saturn':
     case 'uranus':
     case 'neptune':
-        zoomEnd.value = 3
+      zoomEnd.value = 3
       break
   }
 
@@ -250,7 +306,7 @@ let moveEarth = view => {
       x = -5
       y = -5
       z = 5
-    break
+      break
   }
 
   let earthTarget = {
@@ -299,9 +355,9 @@ let moveMoon = view => {
     case 'earth':
       break
     case 'moon':
-        x = focusRadius / -4
-        y = 0
-        z = 0
+      x = focusRadius / -4
+      y = 0
+      z = 0
       break
     case 'mars':
     case 'jupiter':
@@ -311,7 +367,7 @@ let moveMoon = view => {
       x = focusRadius / -4
       y = -5
       z = 5
-    break
+      break
   }
 
   let moonTarget = {
@@ -347,15 +403,15 @@ let moveMars = view => {
     case 'earth':
       break
     case 'moon':
-        x = -2
-        y = 5
-        z = -10
+      x = -2
+      y = 5
+      z = -10
       break
     case 'mars':
       x = focusRadius / -3
       y = 0
       z = 0
-    break
+      break
     case 'jupiter':
     case 'saturn':
     case 'uranus':
@@ -363,7 +419,7 @@ let moveMars = view => {
       x = -4
       y = -1
       z = 5
-    break
+      break
   }
 
   let marsTarget = {
@@ -398,27 +454,27 @@ let moveJupiter = view => {
     case 'earth':
       break
     case 'moon':
-        x = -2
-        y = 10
-        z = -30
+      x = -2
+      y = 10
+      z = -30
       break
     case 'mars':
       x = -2
       y = 6
       z = -25
-    break
+      break
     case 'jupiter':
       x = focusRadius / -1.15
       y = 0
       z = -2
-    break
+      break
     case 'saturn':
     case 'uranus':
     case 'neptune':
       x = 5
       y = 2
       z = 5
-    break
+      break
   }
 
   let jupiterTarget = {
@@ -465,31 +521,31 @@ let moveSaturn = view => {
     case 'earth':
       break
     case 'moon':
-        x = -10
-        y = -8
-        z = -35
+      x = -10
+      y = -8
+      z = -35
       break
     case 'mars':
       x = -8
       y = -4
       z = -25
-    break
+      break
     case 'jupiter':
       x = -6
       y = -2
       z = -15
-    break
+      break
     case 'saturn':
       x = focusRadius / -2
       y = 0
       z = -1
-    break
+      break
     case 'uranus':
     case 'neptune':
       x = -5
       y = 0
       z = 5
-    break
+      break
   }
 
   let saturnTarget = {
@@ -511,8 +567,14 @@ let moveSaturn = view => {
   }
 
   let tweenSaturn = new TWEEN.Tween(saturnOrigin).to(saturnTarget, 1000)
-  let tweenSaturnRingOne = new TWEEN.Tween(saturnRingOneOrigin).to(saturnRingOneTarget, 1000)
-  let tweenSaturnRingTwo = new TWEEN.Tween(saturnRingTwoOrigin).to(saturnRingTwoTarget, 1000)
+  let tweenSaturnRingOne = new TWEEN.Tween(saturnRingOneOrigin).to(
+    saturnRingOneTarget,
+    1000
+  )
+  let tweenSaturnRingTwo = new TWEEN.Tween(saturnRingTwoOrigin).to(
+    saturnRingTwoTarget,
+    1000
+  )
 
   tweenSaturn.onUpdate(function () {
     saturn.position.x = saturnOrigin.x
@@ -554,35 +616,35 @@ let moveUranus = view => {
     case 'earth':
       break
     case 'moon':
-        x = -16
-        y = 14
-        z = -35
+      x = -16
+      y = 14
+      z = -35
       break
     case 'mars':
       x = -14
       y = 10
       z = -25
-    break
+      break
     case 'jupiter':
       x = -9
       y = 8
       z = -15
-    break
+      break
     case 'saturn':
       x = -6
       y = 4
       z = -10
-    break
+      break
     case 'uranus':
       x = focusRadius / -2.5
       y = 0
       z = 0
-    break
+      break
     case 'neptune':
       x = -2
       y = 5
       z = 3
-    break
+      break
   }
 
   let uranusTarget = {
@@ -617,35 +679,35 @@ let moveNeptune = view => {
     case 'earth':
       break
     case 'moon':
-        x = 14
-        y = -7
-        z = -55
+      x = 14
+      y = -7
+      z = -55
       break
     case 'mars':
       x = 10
       y = -5
       z = -45
-    break
+      break
     case 'jupiter':
       x = 8
       y = -4
       z = -35
-    break
+      break
     case 'saturn':
       x = 6
       y = -3
       z = -25
-    break
+      break
     case 'uranus':
       x = 4
       y = -2
       z = -15
-    break
+      break
     case 'neptune':
       x = focusRadius / -4.5
       y = 0
       z = 0
-    break
+      break
   }
 
   let neptuneTarget = {
