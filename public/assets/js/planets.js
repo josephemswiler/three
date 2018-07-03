@@ -1,33 +1,276 @@
 let planets = {
   mercury: {
-      name: 'mercury',
-      type: 'planet',
-      mesh: null,
-      radiusRatio: 2,
-      segments: 50,
-      images: [
-          './assets/images/mercury.jpg'
-      ],
-      position: {
-         x: -2, 
-         y: -2, 
-         z: -1
-      },
-      rotation: {
-          x: 0.001,
-          y: 0.001
-      },
-      // origin: {
-      //     x: mercury.position.x,
-      //     y: mercury.position.y,
-      //     z: mercury.position.z
-      // },
-      moveRatio: {
-          x: -1, 
-          y: 1, 
-          z: 2
-      },
-      zoomTarget: 3,
+    name: 'mercury',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 4,
+    segments: 50,
+    images: ['./assets/images/mercury.jpg'],
+    position: {
+      x: -4,
+      y: 0,
+      z: 0
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  venus: {
+    name: 'venus',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 3,
+    segments: 50,
+    images: ['./assets/images/venus.jpg'],
+    position: {
+      x: -3,
+      y: 0,
+      z: -1
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  earth: {
+    name: 'earth',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 2,
+    segments: 50,
+    images: [
+      './assets/images/earth.jpg',
+      './assets/images/earth-bump.jpg',
+      './assets/images/earth-water.png'
+    ],
+    position: {
+      x: -2,
+      y: 0,
+      z: -2
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  earthClouds: {
+    name: 'earth-clouds',
+    type: 'clouds',
+    mesh: null,
+    radiusRatio: 2,
+    segments: 50,
+    images: [
+      './assets/images/earth-clouds.png',
+    ],
+    position: {
+      x: -2,
+      y: 0,
+      z: -2
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  mars: {
+    name: 'mars',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 3,
+    segments: 50,
+    images: [
+      './assets/images/mars.jpg'
+    ],
+    position: {
+      x: 0,
+      y: 0,
+      z: -2
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  jupiter: {
+    name: 'jupiter',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 1,
+    segments: 50,
+    images: [
+      './assets/images/jupiter.jpg'
+    ],
+    position: {
+      x: 2,
+      y: 0,
+      z: -4
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  saturn: {
+    name: 'saturn',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 1.5,
+    segments: 50,
+    images: [
+      './assets/images/saturn.jpg'
+    ],
+    position: {
+      x: 4,
+      y: 0,
+      z: -5
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  saturnRing: {
+    name: 'saturn-ring',
+    type: 'rings',
+    mesh: null,
+    radiusRatio: 1.5,
+    segments: 2,
+    images: [
+      './assets/images/saturn-ring.png'
+    ],
+    position: {
+      x: 4,
+      y: 0,
+      z: -5
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  uranus: {
+    name: 'uranus',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 2,
+    segments: 50,
+    images: [
+      './assets/images/uranus.jpg'
+    ],
+    position: {
+      x: 5,
+      y: 0,
+      z: -6
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  neptune: {
+    name: 'neptune',
+    type: 'planet',
+    mesh: null,
+    radiusRatio: 2.5,
+    segments: 50,
+    images: [
+      './assets/images/neptune.jpg'
+    ],
+    position: {
+      x: 6,
+      y: 0,
+      z: -7
+    },
+    rotation: {
+      x: 0.001,
+      y: 0.001
+    },
+    moveRatio: {
+      x: -1,
+      y: 1,
+      z: 2
+    },
+    zoomTarget: 3
+  },
+  stars: {
+    name: 'stars',
+    type: 'stars',
+    mesh: null,
+    radiusRatio: 1,
+    segments: 64,
+    images: [
+      './assets/images/stars.png'
+    ],
+    position: {
+      x: 0,
+      y: 0,
+      z: 0
+    },
+    rotation: {
+      x: 0,
+      y: 0
+    },
+    moveRatio: {
+      x: 0,
+      y: 0,
+      z: 0
+    },
+    zoomTarget: 1
   }
 }
 
@@ -78,15 +321,15 @@ scene.add(new THREE.AmbientLight(0x333333))
 //   )
 // }
 
-let createClouds = (radius, segments) => {
-  return new THREE.Mesh(
-    new THREE.SphereGeometry(radius + 0.003, segments, segments),
-    new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./assets/images/earth-clouds.png'),
-      transparent: true
-    })
-  )
-}
+// let createClouds = (radius, segments) => {
+//   return new THREE.Mesh(
+//     new THREE.SphereGeometry(radius + 0.003, segments, segments),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load('./assets/images/earth-clouds.png'),
+//       transparent: true
+//     })
+//   )
+// }
 
 let createStars = (radius, segments) => {
   return new THREE.Mesh(
@@ -98,18 +341,18 @@ let createStars = (radius, segments) => {
   )
 }
 
-let createRings = (inner, outer) => {
-  return new THREE.Mesh(
-    new THREE.RingGeometry(inner + 0.8, outer, 32),
-    new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load('./assets/images/saturn-ring.png'),
-      side: THREE.DoubleSide
-    })
-  )
-}
+// let createRings = (inner, outer) => {
+//   return new THREE.Mesh(
+//     new THREE.RingGeometry(inner + 0.8, outer, 32),
+//     new THREE.MeshBasicMaterial({
+//       map: new THREE.TextureLoader().load('./assets/images/saturn-ring.png'),
+//       side: THREE.DoubleSide
+//     })
+//   )
+// }
 
 let createPlanet = (type, propOne, propTwo, images) => {
-  switch ( type ) {
+  switch (type) {
     case 'planet':
       return new THREE.Mesh(
         new THREE.SphereGeometry(
@@ -147,13 +390,20 @@ let createPlanet = (type, propOne, propTwo, images) => {
       )
     case 'stars':
       return new THREE.Mesh(
-        new THREE.SphereGeometry(propOne, propTwo, propTwo),
+        new THREE.SphereGeometry(90, 64, 64),
         new THREE.MeshBasicMaterial({
           map: new THREE.TextureLoader().load(images[0]),
           side: THREE.BackSide
         })
       )
   }
+}
+
+let addPlanet = (mesh, object) => {
+  mesh.rotation.x += object.rotation.x
+  mesh.position.set(object.position.x, object.position.y, object.position.z)
+  object.mesh = mesh
+  scene.add(mesh)
 }
 
 // let scale = ratio => {
@@ -165,16 +415,22 @@ let focusRadius = window.innerWidth > window.innerHeight
   ? window.innerHeight / 400
   : window.innerWidth / 400
 
-//create mesh from planet object
-let mercuryMesh = createPlanet(planets.mercury.type, focusRadius / planets.mercury.radiusRatio, 50, planets.mercury.images)
-mercuryMesh.rotation.x += planets.mercury.rotation.x
-//add mesh to planet object
-planets.mercury.mesh = mercuryMesh
-//add mesh to scene
-scene.add(mercuryMesh)
+// create mesh from planet object
+Object.keys(planets).forEach(item => {
+  let itemMesh = createPlanet(
+    planets[item].type,
+    focusRadius / planets[item].radiusRatio,
+    planets[item].segments,
+    planets[item].images
+  )
+  console.log(item)
+  addPlanet(itemMesh, planets[item])
+})
 
+// let mercuryMesh = createPlanet(planets.mercury.type, focusRadius / planets.mercury.radiusRatio, planets.mercury.segments, planets.mercury.images)
+// addPlanet(mercuryMesh, planets.mercury)
 
-let movePlanet = ( view, planetObject ) => {
+let movePlanet = (view, planetObject) => {
   console.log(planetObject)
   let origin = {
     x: planetObject.mesh.position.x,
@@ -188,16 +444,18 @@ let movePlanet = ( view, planetObject ) => {
 
   switch (view) {
     case 'earth':
-      break
     case 'moon':
     case 'mars':
     case 'jupiter':
     case 'saturn':
     case 'uranus':
     case 'neptune':
-      x = planetObject.position.x
-      y = planetObject.position.y
-      z = planetObject.position.z
+      // x = planetObject.position.x
+      // y = planetObject.position.y
+      // z = planetObject.position.z
+      x = 2
+      y = 2
+      z = 2
       break
   }
 
@@ -218,11 +476,8 @@ let movePlanet = ( view, planetObject ) => {
   tween.start()
 }
 
-movePlanet('earth', planets.mercury)
-
 // Add planet, clouds, stars to DOM
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
-
 
 // let planetEarth = createPlanet(focusRadius, 50, [
 //   './assets/images/earth.jpg',
@@ -280,7 +535,10 @@ movePlanet('earth', planets.mercury)
 let render = function () {
   requestAnimationFrame(render)
 
-  Object.keys(planets).forEach( item => planets[item].mesh.rotation.x += planets[item].rotation.x)
+  Object.keys(planets).forEach(item => {
+    planets[item].mesh.rotation.x += planets[item].rotation.x
+    planets[item].mesh.rotation.y += planets[item].rotation.y
+  })
 
   // planetEarth.rotation.y += 0.0007
   // planetEarth.rotation.x += 0.0001
@@ -324,17 +582,19 @@ window.onload = () => {
   }, 1000)
 }
 
-// $('.planet-btn').click(function () {
-//   let view = this.dataset.name
-//   moveMoon(view)
-//   moveEarth(view)
-//   moveZoom(view)
-//   moveMars(view)
-//   moveJupiter(view)
-//   moveSaturn(view)
-//   moveUranus(view)
-//   moveNeptune(view)
-// })
+$('.planet-btn').click(function () {
+  let view = this.dataset.name
+  Object.keys(planets).forEach(item => movePlanet(view, planets[item]))
+
+  // moveMoon(view)
+  // moveEarth(view)
+  // moveZoom(view)
+  // moveMars(view)
+  // moveJupiter(view)
+  // moveSaturn(view)
+  // moveUranus(view)
+  // moveNeptune(view)
+})
 
 // let moveZoom = view => {
 //   let zoom = {
