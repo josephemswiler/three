@@ -180,6 +180,8 @@ $('.planet-btn').click(function () {
   moveMars(view)
   moveJupiter(view)
   moveSaturn(view)
+  moveUranus(view)
+  moveNeptune(view)
 })
 
 let moveZoom = view => {
@@ -198,6 +200,8 @@ let moveZoom = view => {
     case 'mars':
     case 'jupiter':
     case 'saturn':
+    case 'uranus':
+    case 'neptune':
         zoomEnd.value = 3
       break
   }
@@ -235,6 +239,8 @@ let moveEarth = view => {
     case 'mars':
     case 'jupiter':
     case 'saturn':
+    case 'uranus':
+    case 'neptune':
       x = -5
       y = -5
       z = 5
@@ -294,6 +300,8 @@ let moveMoon = view => {
     case 'mars':
     case 'jupiter':
     case 'saturn':
+    case 'uranus':
+    case 'neptune':
       x = focusRadius / -4
       y = -5
       z = 5
@@ -344,6 +352,8 @@ let moveMars = view => {
     break
     case 'jupiter':
     case 'saturn':
+    case 'uranus':
+    case 'neptune':
       x = -4
       y = -1
       z = 5
@@ -397,6 +407,8 @@ let moveJupiter = view => {
       z = -2
     break
     case 'saturn':
+    case 'uranus':
+    case 'neptune':
       x = 5
       y = 2
       z = 5
@@ -454,6 +466,12 @@ let moveSaturn = view => {
       y = 0
       z = -1
     break
+    case 'uranus':
+    case 'neptune':
+      x = -5
+      y = 0
+      z = 5
+    break
   }
 
   let saturnTarget = {
@@ -473,8 +491,131 @@ let moveSaturn = view => {
   tweenSaturn.start()
 }
 
+let moveUranus = view => {
+  let uranusOrigin = {
+    x: uranus.position.x,
+    y: uranus.position.y,
+    z: uranus.position.z
+  }
 
+  let x = -30
+  let y = 20
+  let z = -55
 
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        x = -20
+        y = 14
+        z = -35
+      break
+    case 'mars':
+      x = -14
+      y = 10
+      z = -25
+    break
+    case 'jupiter':
+      x = -9
+      y = 8
+      z = -15
+    break
+    case 'saturn':
+      x = -6
+      y = 4
+      z = -10
+    break
+    case 'uranus':
+      x = focusRadius / -2.5
+      y = 0
+      z = 0
+    break
+    case 'neptune':
+      x = -2
+      y = 5
+      z = 3
+    break
+  }
+
+  let uranusTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
+  let tweenUranus = new TWEEN.Tween(uranusOrigin).to(uranusTarget, 1000)
+
+  tweenUranus.onUpdate(function () {
+    uranus.position.x = uranusOrigin.x
+    uranus.position.y = uranusOrigin.y
+    uranus.position.z = uranusOrigin.z
+  })
+  tweenUranus.easing(TWEEN.Easing.Exponential.Out)
+  tweenUranus.start()
+}
+
+let moveNeptune = view => {
+  let neptuneOrigin = {
+    x: neptune.position.x,
+    y: neptune.position.y,
+    z: neptune.position.z
+  }
+
+  let x = 20
+  let y = -10
+  let z = -65
+
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        x = 14
+        y = -7
+        z = -55
+      break
+    case 'mars':
+      x = 10
+      y = -5
+      z = -45
+    break
+    case 'jupiter':
+      x = 8
+      y = -4
+      z = -35
+    break
+    case 'saturn':
+      x = 6
+      y = -3
+      z = -25
+    break
+    case 'uranus':
+      x = 4
+      y = -2
+      z = -15
+    break
+    case 'neptune':
+      x = focusRadius / -4.5
+      y = 0
+      z = 0
+    break
+  }
+
+  let neptuneTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
+  let tweenNeptune = new TWEEN.Tween(neptuneOrigin).to(neptuneTarget, 1000)
+
+  tweenNeptune.onUpdate(function () {
+    neptune.position.x = neptuneOrigin.x
+    neptune.position.y = neptuneOrigin.y
+    neptune.position.z = neptuneOrigin.z
+  })
+  tweenNeptune.easing(TWEEN.Easing.Exponential.Out)
+  tweenNeptune.start()
+}
 
 function animate () {
   camera.updateProjectionMatrix()
