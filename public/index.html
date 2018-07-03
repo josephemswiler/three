@@ -8,25 +8,87 @@
 	<title>Planets</title>
 	<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css">
 	<link rel="stylesheet" href="./assets/css/style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+	 crossorigin="anonymous">
 </head>
 
 <body>
 	<div id="space"></div>
-	<div class="planet-button-wrapper">
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="earth"><i class="fas fa-angle-right"></i> Earth <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="moon"><i class="fas fa-angle-right"></i> Moon <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="mars"><i class="fas fa-angle-right"></i> Mars <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="jupiter"><i class="fas fa-angle-right"></i> Jupiter <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="saturn"><i class="fas fa-angle-right"></i> Saturn <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="uranus"><i class="fas fa-angle-right"></i> Uranus <i class="fas fa-angle-left"></i></button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="neptune"><i class="fas fa-angle-right"></i> Neptune <i class="fas fa-angle-left"></i></button>
-		
+	<div class="container card-wrapper">
+		<div class="row">
+			<div class="offset-6 col-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Venus</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Venusian Information</h6>
+						<p class="card-text">
+							Distance from Sun: 67.24 million mi
+							<br> Radius: 3,760 mi
+							<br> Orbital period: 225 days
+							<br> Mass: 4.867 × 10^24 kg (0.815 M⊕)
+							<br> Equatorial rotation velocity: 6.52 km/h (1.81 m/s)
+							<br> Average orbital speed‎: ‎35.02 km/s
+							<br> Surface gravity‎: ‎8.87 m/s2; 0.904 g
+							<br> Surface area‎: ‎4.6023×108 km2
+							<br>
+						</p>
+						<button type="button" class="btn btn-outline-danger">
+							<i class="fas fa-angle-right"></i> Select Planet
+							<i class="fas fa-angle-left"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="planet-button-wrapper container">
+
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="mercury">
+			<i class="fas fa-angle-right"></i> Mercury
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="venus">
+			<i class="fas fa-angle-right"></i> Venus
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="earth">
+			<i class="fas fa-angle-right"></i> Earth
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="moon">
+			<i class="fas fa-angle-right"></i> Moon
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="mars">
+			<i class="fas fa-angle-right"></i> Mars
+			<i class="fas fa-angle-left"></i>
+		</button>
+
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="jupiter">
+			<i class="fas fa-angle-right"></i> Jupiter
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="saturn">
+			<i class="fas fa-angle-right"></i> Saturn
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="uranus">
+			<i class="fas fa-angle-right"></i> Uranus
+			<i class="fas fa-angle-left"></i>
+		</button>
+		<button type="button" class="btn btn-outline-primary planet-btn" data-name="neptune">
+			<i class="fas fa-angle-right"></i> Neptune
+			<i class="fas fa-angle-left"></i>
+		</button>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
 	<script src="http://threejs.org/build/three.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+	<script src="./assets/js/planetsArray.js"></script>
 	<script src="./assets/js/planets.js"></script>
 </body>
 

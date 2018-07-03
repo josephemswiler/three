@@ -1,279 +1,3 @@
-let planets = {
-  mercury: {
-    name: 'mercury',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 4,
-    segments: 50,
-    images: ['./assets/images/mercury.jpg'],
-    position: {
-      x: -4,
-      y: 0,
-      z: 0
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  venus: {
-    name: 'venus',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 3,
-    segments: 50,
-    images: ['./assets/images/venus.jpg'],
-    position: {
-      x: -3,
-      y: 0,
-      z: -1
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  earth: {
-    name: 'earth',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 2,
-    segments: 50,
-    images: [
-      './assets/images/earth.jpg',
-      './assets/images/earth-bump.jpg',
-      './assets/images/earth-water.png'
-    ],
-    position: {
-      x: -2,
-      y: 0,
-      z: -2
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  earthClouds: {
-    name: 'earth-clouds',
-    type: 'clouds',
-    mesh: null,
-    radiusRatio: 2,
-    segments: 50,
-    images: [
-      './assets/images/earth-clouds.png',
-    ],
-    position: {
-      x: -2,
-      y: 0,
-      z: -2
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  mars: {
-    name: 'mars',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 3,
-    segments: 50,
-    images: [
-      './assets/images/mars.jpg'
-    ],
-    position: {
-      x: 0,
-      y: 0,
-      z: -2
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  jupiter: {
-    name: 'jupiter',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 1,
-    segments: 50,
-    images: [
-      './assets/images/jupiter.jpg'
-    ],
-    position: {
-      x: 2,
-      y: 0,
-      z: -4
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  saturn: {
-    name: 'saturn',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 1.5,
-    segments: 50,
-    images: [
-      './assets/images/saturn.jpg'
-    ],
-    position: {
-      x: 4,
-      y: 0,
-      z: -5
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  saturnRing: {
-    name: 'saturn-ring',
-    type: 'rings',
-    mesh: null,
-    radiusRatio: 1.5,
-    segments: 2,
-    images: [
-      './assets/images/saturn-ring.png'
-    ],
-    position: {
-      x: 4,
-      y: 0,
-      z: -5
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  uranus: {
-    name: 'uranus',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 2,
-    segments: 50,
-    images: [
-      './assets/images/uranus.jpg'
-    ],
-    position: {
-      x: 5,
-      y: 0,
-      z: -6
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  neptune: {
-    name: 'neptune',
-    type: 'planet',
-    mesh: null,
-    radiusRatio: 2.5,
-    segments: 50,
-    images: [
-      './assets/images/neptune.jpg'
-    ],
-    position: {
-      x: 6,
-      y: 0,
-      z: -7
-    },
-    rotation: {
-      x: 0.001,
-      y: 0.001
-    },
-    moveRatio: {
-      x: -1,
-      y: 1,
-      z: 2
-    },
-    zoomTarget: 3
-  },
-  stars: {
-    name: 'stars',
-    type: 'stars',
-    mesh: null,
-    radiusRatio: 1,
-    segments: 64,
-    images: [
-      './assets/images/stars.png'
-    ],
-    position: {
-      x: 0,
-      y: 0,
-      z: 0
-    },
-    rotation: {
-      x: 0,
-      y: 0
-    },
-    moveRatio: {
-      x: 0,
-      y: 0,
-      z: 0
-    },
-    zoomTarget: 1
-  }
-}
-
 // Set scene, camera, renderer
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let scene = new THREE.Scene()
@@ -332,7 +56,7 @@ let createPlanet = (type, propOne, propTwo, images) => {
       )
     case 'rings':
       return new THREE.Mesh(
-        new THREE.RingGeometry(propOne + 0.8, propTwo, 32),
+        new THREE.RingGeometry(propOne, propTwo, 32),
         new THREE.MeshBasicMaterial({
           map: new THREE.TextureLoader().load(images[0]),
           side: THREE.DoubleSide
@@ -350,8 +74,9 @@ let createPlanet = (type, propOne, propTwo, images) => {
 }
 
 let addPlanet = (mesh, object) => {
-  mesh.rotation.x += object.rotation.x
+  mesh.rotation.y += object.rotation.y
   mesh.position.set(object.position.x, object.position.y, object.position.z)
+  if (object.type === 'rings') mesh.rotation.set(1.5, 10, 0)
   object.mesh = mesh
   scene.add(mesh)
 }
@@ -372,56 +97,109 @@ Object.keys(planets).forEach(item => {
     planets[item].segments,
     planets[item].images
   )
-  console.log(item)
   addPlanet(itemMesh, planets[item])
 })
 
 let movePlanet = (view, planetObject) => {
-  console.log(planetObject)
-  let origin = {
-    x: planetObject.mesh.position.x,
-    y: planetObject.mesh.position.y,
-    z: planetObject.mesh.position.z
+  $('.card-wrapper').css('display', 'block')
+  $('.card-title').text(view)
+  if (
+    planetObject.name === view ||
+    planetObject.name.split('-').includes(view)
+  ) {
+    let origin = {
+      x: planetObject.mesh.position.x,
+      y: planetObject.mesh.position.y,
+      z: planetObject.mesh.position.z
+    }
+
+    let x = planetObject.position.x
+    let y = planetObject.position.y
+    let z = planetObject.position.z
+
+    switch (view) {
+      case 'mercury':
+      case 'venus':
+      case 'earth':
+      case 'moon':
+      case 'mars':
+      case 'jupiter':
+      case 'saturn':
+      case 'uranus':
+      case 'neptune':
+        // x = planetObject.position.x
+        // y = planetObject.position.y
+        // z = planetObject.position.z
+        x = 0
+        y = 0
+        z = 8
+        break
+    }
+
+    let target = {
+      x: x,
+      y: y,
+      z: z
+    }
+
+    let tween = new TWEEN.Tween(origin).to(target, 1000)
+
+    tween.onUpdate(function () {
+      planetObject.mesh.position.x = origin.x
+      planetObject.mesh.position.y = origin.y
+      planetObject.mesh.position.z = origin.z
+    })
+    tween.easing(TWEEN.Easing.Exponential.Out)
+    tween.start()
+  } else {
+    {
+      let origin = {
+        x: planetObject.mesh.position.x,
+        y: planetObject.mesh.position.y,
+        z: planetObject.mesh.position.z
+      }
+
+      let x = planetObject.position.x
+      let y = planetObject.position.y
+      let z = planetObject.position.z
+
+      switch (view) {
+        case 'mercury':
+        case 'venus':
+        case 'earth':
+        case 'moon':
+        case 'mars':
+        case 'jupiter':
+        case 'saturn':
+        case 'uranus':
+        case 'neptune':
+          // x = planetObject.position.x
+          // y = planetObject.position.y
+          // z = planetObject.position.z
+          // x = 0
+          // y = 0
+          z = 0
+          break
+      }
+
+      let target = {
+        x: x,
+        y: y,
+        z: z
+      }
+
+      let tween = new TWEEN.Tween(origin).to(target, 1000)
+
+      tween.onUpdate(function () {
+        planetObject.mesh.position.x = origin.x
+        planetObject.mesh.position.y = origin.y
+        planetObject.mesh.position.z = origin.z
+      })
+      tween.easing(TWEEN.Easing.Exponential.Out)
+      tween.start()
+    }
   }
-
-  let x = planetObject.position.x
-  let y = planetObject.position.y
-  let z = planetObject.position.z
-
-  switch (view) {
-    case 'earth':
-    case 'moon':
-    case 'mars':
-    case 'jupiter':
-    case 'saturn':
-    case 'uranus':
-    case 'neptune':
-      // x = planetObject.position.x
-      // y = planetObject.position.y
-      // z = planetObject.position.z
-      x = 2
-      y = 2
-      z = 2
-      break
-  }
-
-  let target = {
-    x: x,
-    y: y,
-    z: z
-  }
-
-  let tween = new TWEEN.Tween(origin).to(target, 1000)
-
-  tween.onUpdate(function () {
-    planetObject.mesh.position.x = origin.x
-    planetObject.mesh.position.y = origin.y
-    planetObject.mesh.position.z = origin.z
-  })
-  tween.easing(TWEEN.Easing.Exponential.Out)
-  tween.start()
 }
-
 
 // Render
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -463,15 +241,6 @@ window.onload = () => {
 $('.planet-btn').click(function () {
   let view = this.dataset.name
   Object.keys(planets).forEach(item => movePlanet(view, planets[item]))
-
-  // moveMoon(view)
-  // moveEarth(view)
-  // moveZoom(view)
-  // moveMars(view)
-  // moveJupiter(view)
-  // moveSaturn(view)
-  // moveUranus(view)
-  // moveNeptune(view)
 })
 
 function animate () {
