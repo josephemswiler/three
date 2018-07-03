@@ -65,6 +65,16 @@ let createStars = (radius, segments) => {
   )
 }
 
+// let createRings = (radius, segments) => {
+//   return new THREE.Mesh(
+//     new THREE.SphereGeometry(radius, segments, segments),
+//     new THREE.MeshBasicMaterial({
+//       map: new THREE.TextureLoader().load('./assets/images/stars.png'),
+//       side: THREE.BackSide
+//     })
+//   )
+// }
+
 // Add planet, clouds, stars to DOM
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let focusRadius = window.innerWidth > window.innerHeight
@@ -95,8 +105,28 @@ mars.position.set(-3, 10, -20)
 scene.add(mars)
 
 let jupiter = createPlanet(focusRadius / 1.15, 50, ['./assets/images/jupiter.jpg'])
-jupiter.position.set(-3, 14, -35)
+jupiter.position.set(-2, 14, -35)
 scene.add(jupiter)
+
+let saturn = createPlanet(focusRadius / 2, 50, ['./assets/images/saturn.jpg'])
+saturn.position.set(-15, -10, -45)
+scene.add(saturn)
+
+// geometry    = new THREE.TorusGeometry( 100, .5 , 50 ,50); 
+// material    = new THREE.MeshNormalMaterial(); 
+// mesh    = new THREE.Mesh( geometry, material );
+
+// let rings = createClouds(focusRadius / 2, 50, ['./assets/images/saturn-ring.png'])
+// rings.position.set(3, 20, -45)
+// scene.add(rings)
+
+let uranus = createPlanet(focusRadius / 3.5, 50, ['./assets/images/uranus.jpg'])
+uranus.position.set(-30, 20, -55)
+scene.add(uranus)
+
+let neptune = createPlanet(focusRadius / 4.5, 50, ['./assets/images/neptune.jpg'])
+neptune.position.set(20, -10, -65)
+scene.add(neptune)
 
 // Render
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -110,6 +140,9 @@ let render = function () {
   moon.rotation.y -= 0.001
   mars.rotation.y += 0.001
   jupiter.rotation.y -= 0.01
+  saturn.rotation.y += 0.008
+  uranus.rotation.y -= 0.008
+  neptune.rotation.y += 0.001
 
   renderer.render(scene, camera)
 }
@@ -146,6 +179,7 @@ $('.planet-btn').click(function () {
   moveZoom(view)
   moveMars(view)
   moveJupiter(view)
+  moveSaturn(view)
 })
 
 let moveZoom = view => {
@@ -163,6 +197,7 @@ let moveZoom = view => {
     case 'moon':
     case 'mars':
     case 'jupiter':
+    case 'saturn':
         zoomEnd.value = 3
       break
   }
@@ -199,6 +234,7 @@ let moveEarth = view => {
     case 'moon':
     case 'mars':
     case 'jupiter':
+    case 'saturn':
       x = -5
       y = -5
       z = 5
@@ -257,6 +293,7 @@ let moveMoon = view => {
       break
     case 'mars':
     case 'jupiter':
+    case 'saturn':
       x = focusRadius / -4
       y = -5
       z = 5
@@ -288,7 +325,7 @@ let moveMars = view => {
     z: mars.position.z
   }
 
-  let x = -3
+  let x = -2
   let y = 10
   let z = -20
 
@@ -306,6 +343,7 @@ let moveMars = view => {
       z = 0
     break
     case 'jupiter':
+    case 'saturn':
       x = -4
       y = -1
       z = 5
@@ -358,6 +396,11 @@ let moveJupiter = view => {
       y = 0
       z = -2
     break
+    case 'saturn':
+      x = 5
+      y = 2
+      z = 5
+    break
   }
 
   let jupiterTarget = {
@@ -376,6 +419,62 @@ let moveJupiter = view => {
   tweenJupiter.easing(TWEEN.Easing.Exponential.Out)
   tweenJupiter.start()
 }
+
+let moveSaturn = view => {
+  let saturnOrigin = {
+    x: saturn.position.x,
+    y: saturn.position.y,
+    z: saturn.position.z
+  }
+
+  let x = -15
+  let y = -10
+  let z = -45
+
+  switch (view) {
+    case 'earth':
+      break
+    case 'moon':
+        x = -10
+        y = -8
+        z = -35
+      break
+    case 'mars':
+      x = -8
+      y = -4
+      z = -25
+    break
+    case 'jupiter':
+      x = -6
+      y = -2
+      z = -15
+    break
+    case 'saturn':
+      x = focusRadius / -2
+      y = 0
+      z = -1
+    break
+  }
+
+  let saturnTarget = {
+    x: x,
+    y: y,
+    z: z
+  }
+
+  let tweenSaturn = new TWEEN.Tween(saturnOrigin).to(saturnTarget, 1000)
+
+  tweenSaturn.onUpdate(function () {
+    saturn.position.x = saturnOrigin.x
+    saturn.position.y = saturnOrigin.y
+    saturn.position.z = saturnOrigin.z
+  })
+  tweenSaturn.easing(TWEEN.Easing.Exponential.Out)
+  tweenSaturn.start()
+}
+
+
+
 
 function animate () {
   camera.updateProjectionMatrix()
