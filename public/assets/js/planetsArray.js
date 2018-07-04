@@ -153,8 +153,8 @@ let planets = {
       name: 'saturn-ring',
       type: 'rings',
       mesh: null,
-      radiusRatio: 1,
-      segments: .6,
+      radiusRatio: 1.5,
+      segments: 2,
       images: [
         './assets/images/saturn-ring.png'
       ],
@@ -218,7 +218,7 @@ let planets = {
       position: {
         x: 0,
         y: 0,
-        z: 0
+        z: -100
       },
       rotation: {
         x: 0,

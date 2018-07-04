@@ -1,3 +1,32 @@
+// Animate CSS
+// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
+$.fn.extend({
+  animateCss: function (animationName, callback) {
+    var animationEnd = (function (el) {
+      var animations = {
+        animation: 'animationend',
+        OAnimation: 'oAnimationEnd',
+        MozAnimation: 'mozAnimationEnd',
+        WebkitAnimation: 'webkitAnimationEnd'
+      }
+
+      for (var t in animations) {
+        if (el.style[t] !== undefined) {
+          return animations[t]
+        }
+      }
+    })(document.createElement('div'))
+
+    this.addClass('animated ' + animationName).one(animationEnd, function () {
+      $(this).removeClass('animated ' + animationName)
+
+      if (typeof callback === 'function') callback()
+    })
+
+    return this
+  }
+})
+
 // Set scene, camera, renderer
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let scene = new THREE.Scene()
@@ -14,6 +43,27 @@ let renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 
 document.body.appendChild(renderer.domElement)
+
+// Onload zoom
+// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
+window.onload = () => {
+  setTimeout(() => {
+    let zoom = {
+      value: camera.position.z
+    }
+    let zoomEnd = {
+      value: 15
+    }
+    let tween = new TWEEN.Tween(zoom).to(zoomEnd, 800)
+    tween.onUpdate(() => {
+      camera.position.z = zoom.value
+    })
+
+    tween.easing(TWEEN.Easing.Quartic.InOut)
+
+    tween.start()
+  }, 1000)
+}
 
 // Add directional and ambient light
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
@@ -91,17 +141,20 @@ Object.keys(planets).forEach(item => {
   addPlanet(itemMesh, planets[item])
 })
 
-let moveCamera = (planetObject) => {
+let moveCamera = planetObject => {
+  $('.card-wrapper').show().animateCss('fadeInRight')
+  $('.card-title').text(planetObject.name)
+  $('.visit-span').text(`Visit ${planetObject.name}`)
   let origin = {
     x: camera.position.x,
     y: camera.position.y,
     z: camera.position.z
-    }
+  }
   let target = {
     x: planetObject.mesh.position.x,
     y: planetObject.mesh.position.y,
     z: planetObject.mesh.position.z + 5
-    }
+  }
   let tween = new TWEEN.Tween(origin).to(target, 1000)
   tween.onUpdate(() => {
     camera.position.x = origin.x
@@ -114,7 +167,29 @@ let moveCamera = (planetObject) => {
   tween.start()
 }
 
-// Render
+// Click event listener
+// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
+let currentPlanet = planets.earth
+
+$('.planet-btn').click(function () {
+  moveCamera(planets[this.dataset.name])
+})
+
+$('.visit-btn').click(function () {
+  $('.container-fluid').show().animateCss('fadeInRight')
+  $('.container').animateCss('zoomOut', () => {
+    $('.container').hide()
+  })
+
+  Object.keys(planets).forEach(item => {
+    $('.card-title').first().text() === planets[item].name ||
+    planets[item].name.split('-').includes($('.card-title').first().text()) ? 
+    false :
+    planets[item].mesh.visible = false
+  })
+})
+
+// Render, animate
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let render = function () {
   requestAnimationFrame(render)
@@ -128,32 +203,6 @@ let render = function () {
 }
 
 render()
-
-// Move position
-// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
-
-window.onload = () => {
-  setTimeout(() => {
-    let zoom = {
-      value: camera.position.z
-    }
-    let zoomEnd = {
-      value: 15
-    }
-    let tween = new TWEEN.Tween(zoom).to(zoomEnd, 800)
-    tween.onUpdate(() => {
-      camera.position.z = zoom.value
-    })
-
-    tween.easing(TWEEN.Easing.Quartic.InOut)
-
-    tween.start()
-  }, 1000)
-}
-
-$('.planet-btn').click(function () {
-  moveCamera(planets[this.dataset.name])
-})
 
 function animate () {
   camera.updateProjectionMatrix()

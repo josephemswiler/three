@@ -10,17 +10,29 @@
 	<link rel="stylesheet" href="./assets/css/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
 	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 
 <body>
 	<div id="space"></div>
+	<div class="container-fluid">
+			<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Venus</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>
 	<div class="container card-wrapper">
 		<div class="row">
-			<div class="offset-6 col-6">
+			<div class="offset-md-6 col-md-6">
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">Venus</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Venusian Information</h6>
+						<h6 class="card-subtitle mb-2 text-muted">Information</h6>
 						<p class="card-text">
 							Distance from Sun: 67.24 million mi
 							<br> Radius: 3,760 mi
@@ -32,8 +44,8 @@
 							<br> Surface area‎: ‎4.6023×108 km2
 							<br>
 						</p>
-						<button type="button" class="btn btn-outline-danger">
-							<i class="fas fa-angle-right"></i> Select Planet
+						<button type="button" class="btn btn-outline-danger visit-btn">
+							<i class="fas fa-angle-right"></i> <span class="visit-span"></span>
 							<i class="fas fa-angle-left"></i>
 						</button>
 					</div>
@@ -42,67 +54,38 @@
 		</div>
 	</div>
 	<div class="planet-button-wrapper container">
-			<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+		<div class="row">
+			<div class="col-12">
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 					<div class="btn-group" role="group">
-					  <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-angle-right"></i> Select Planet
-						<i class="fas fa-angle-left"></i></button>
-					  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 177px, 0px);">
-						<a class="dropdown-item planet-btn" data-name="mercury" href="#">Mercury</a>
-						<a class="dropdown-item planet-btn" data-name="venus" href="#">Venus</a>
-						<a class="dropdown-item planet-btn" data-name="earth" href="#">Earth</a>
-						<a class="dropdown-item planet-btn" data-name="moon" href="#">Moon</a>
-						<a class="dropdown-item planet-btn" data-name="mars" href="#">Mars</a>
-						<a class="dropdown-item planet-btn" data-name="jupiter" href="#">Jupiter</a>
-						<a class="dropdown-item planet-btn" data-name="saturn" href="#">Saturn</a>
-						<a class="dropdown-item planet-btn" data-name="uranus" href="#">Uranus</a>
-						<a class="dropdown-item planet-btn" data-name="neptune" href="#">Neptune</a>
-					  </div>
+						<button id="btnGroupDrop1" type="button" class="btn btn-outline-danger" data-toggle="dropdown" aria-haspopup="true"
+						 aria-expanded="false">
+							<i class="fas fa-angle-right"></i> Select Planet
+							<i class="fas fa-angle-left"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 177px, 0px);">
+							<a class="dropdown-item planet-btn" data-name="mercury" href="#">Mercury</a>
+							<a class="dropdown-item planet-btn" data-name="venus" href="#">Venus</a>
+							<a class="dropdown-item planet-btn" data-name="earth" href="#">Earth</a>
+							<a class="dropdown-item planet-btn" data-name="moon" href="#">Moon</a>
+							<a class="dropdown-item planet-btn" data-name="mars" href="#">Mars</a>
+							<a class="dropdown-item planet-btn" data-name="jupiter" href="#">Jupiter</a>
+							<a class="dropdown-item planet-btn" data-name="saturn" href="#">Saturn</a>
+							<a class="dropdown-item planet-btn" data-name="uranus" href="#">Uranus</a>
+							<a class="dropdown-item planet-btn" data-name="neptune" href="#">Neptune</a>
+						</div>
 					</div>
-				  </div>
-		<!-- <button type="button" class="btn btn-outline-primary planet-btn" data-name="mercury">
-			<i class="fas fa-angle-right"></i> Mercury
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="venus">
-			<i class="fas fa-angle-right"></i> Venus
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="earth">
-			<i class="fas fa-angle-right"></i> Earth
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="moon">
-			<i class="fas fa-angle-right"></i> Moon
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="mars">
-			<i class="fas fa-angle-right"></i> Mars
-			<i class="fas fa-angle-left"></i>
-		</button>
-
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="jupiter">
-			<i class="fas fa-angle-right"></i> Jupiter
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="saturn">
-			<i class="fas fa-angle-right"></i> Saturn
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="uranus">
-			<i class="fas fa-angle-right"></i> Uranus
-			<i class="fas fa-angle-left"></i>
-		</button>
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="neptune">
-			<i class="fas fa-angle-right"></i> Neptune
-			<i class="fas fa-angle-left"></i>
-		</button> -->
+				</div>
+			</div>
+		</div>
 	</div>
 
-	</div>
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
 	<script src="http://threejs.org/build/three.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 	<script src="./assets/js/planetsArray.js"></script>
