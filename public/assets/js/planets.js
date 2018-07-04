@@ -8,7 +8,7 @@ let camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 )
-camera.position.z = 50
+camera.position.z = 80
 
 let renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -81,124 +81,148 @@ let addPlanet = (mesh, object) => {
   scene.add(mesh)
 }
 
-// let scale = ratio => {
-//   window.innerWidth > window.innerHeight
-//     ? window.innerHeight / ratio
-//     : window.innerWidth / ratio
-// }
-let focusRadius = window.innerWidth > window.innerHeight
-  ? window.innerHeight / 400
-  : window.innerWidth / 400
-
 Object.keys(planets).forEach(item => {
   let itemMesh = createPlanet(
     planets[item].type,
-    focusRadius / planets[item].radiusRatio,
+    planets[item].radiusRatio,
     planets[item].segments,
     planets[item].images
   )
   addPlanet(itemMesh, planets[item])
 })
 
-let movePlanet = (view, planetObject) => {
-  $('.card-wrapper').css('display', 'block')
-  $('.card-title').text(view)
-  if (
-    planetObject.name === view ||
-    planetObject.name.split('-').includes(view)
-  ) {
-    let origin = {
-      x: planetObject.mesh.position.x,
-      y: planetObject.mesh.position.y,
-      z: planetObject.mesh.position.z
+// let movePlanet = (view, planetObject) => {
+//   // $('.card-wrapper').css('display', 'block')
+//   // $('.card-title').text(view)
+//   if (
+//     planetObject.name === view ||
+//     planetObject.name.split('-').includes(view)
+//   ) {
+//     let origin = {
+//       x: planetObject.mesh.position.x,
+//       y: planetObject.mesh.position.y,
+//       z: planetObject.mesh.position.z
+//     }
+
+//     let x = planetObject.position.x
+//     let y = planetObject.position.y
+//     let z = planetObject.position.z
+
+//     let target = {
+//       x: 0,
+//       y: 0,
+//       z: 9
+//       // window.innerWidth > window.innerHeight
+//       // ? window.innerHeight / 200
+//       // : window.innerWidth / 200
+//     }
+
+//     let tween = new TWEEN.Tween(origin).to(target, 1000)
+
+//     tween.onUpdate(function () {
+//       planetObject.mesh.position.x = origin.x
+//       planetObject.mesh.position.y = origin.y
+//       planetObject.mesh.position.z = origin.z
+//     })
+//     tween.easing(TWEEN.Easing.Exponential.Out)
+//     tween.start()
+//   } else {
+//     {
+//       let origin = {
+//         x: planetObject.mesh.position.x,
+//         y: planetObject.mesh.position.y,
+//         z: planetObject.mesh.position.z
+//       }
+
+//       let x = planetObject.position.x
+//       let y = planetObject.position.y
+//       let z = planetObject.position.z
+
+//       switch (view) {
+//         case 'mercury':
+//           x = planetObject.position.x * 1.5
+//           y = planetObject.position.y * 1.5
+//           z = planetObject.position.z - 20
+//           break
+//         case 'venus':
+//           x = planetObject.position.x * 1.6
+//           y = planetObject.position.y * 1.6
+//           z = planetObject.position.z - 18
+//           planets.mercury.mesh.position.set(3, 2.5, 32)
+//           break
+//         case 'earth':
+//           x = planetObject.position.x * 1.7
+//           y = planetObject.position.y * 1.7
+//           z = planetObject.position.z - 16
+//           if (planetObject.name === 'mercury') {
+//             x = 1
+//             y = 3
+//             z = 30
+//           }
+//           if (planetObject.name === 'venus') {
+//             x = 1
+//             y = 3
+//             z = 30
+//           }
+//           planets.mercury.mesh.position.set(1, 3, 30)
+//           planets.venus.mesh.position.set(3, 2.5, 32)
+//           break
+//         case 'moon':
+//         case 'mars':
+//         case 'jupiter':
+//         case 'saturn':
+//         case 'uranus':
+//         case 'neptune':
+//           // x = planetObject.position.x
+//           // y = planetObject.position.y
+//           // z = planetObject.position.z
+//           x = 0
+//           y = 0
+//           z = -1
+//           break
+//       }
+
+//       let target = {
+//         x: x,
+//         y: y,
+//         z: z
+//       }
+
+//       let tween = new TWEEN.Tween(origin).to(target, 1000)
+
+//       tween.onUpdate(function () {
+//         planetObject.mesh.position.x = origin.x
+//         planetObject.mesh.position.y = origin.y
+//         planetObject.mesh.position.z = origin.z
+//       })
+//       tween.easing(TWEEN.Easing.Exponential.Out)
+//       tween.start()
+//     }
+//   }
+// }
+
+let moveCamera = (planetObject) => {
+  console.log(planetObject)
+  let origin = {
+    x: camera.position.x,
+    y: camera.position.y,
+    z: camera.position.z
     }
-
-    let x = planetObject.position.x
-    let y = planetObject.position.y
-    let z = planetObject.position.z
-
-    switch (view) {
-      case 'mercury':
-      case 'venus':
-      case 'earth':
-      case 'moon':
-      case 'mars':
-      case 'jupiter':
-      case 'saturn':
-      case 'uranus':
-      case 'neptune':
-        // x = planetObject.position.x
-        // y = planetObject.position.y
-        // z = planetObject.position.z
-        x = 0
-        y = 0
-        z = 8
-        break
+  let target = {
+    x: planetObject.mesh.position.x,
+    y: planetObject.mesh.position.y,
+    z: planetObject.mesh.position.z + 5
     }
+  let tween = new TWEEN.Tween(origin).to(target, 1000)
+  tween.onUpdate(() => {
+    camera.position.x = origin.x
+    camera.position.y = origin.y
+    camera.position.z = origin.z
+  })
 
-    let target = {
-      x: x,
-      y: y,
-      z: z
-    }
+  tween.easing(TWEEN.Easing.Quartic.InOut)
 
-    let tween = new TWEEN.Tween(origin).to(target, 1000)
-
-    tween.onUpdate(function () {
-      planetObject.mesh.position.x = origin.x
-      planetObject.mesh.position.y = origin.y
-      planetObject.mesh.position.z = origin.z
-    })
-    tween.easing(TWEEN.Easing.Exponential.Out)
-    tween.start()
-  } else {
-    {
-      let origin = {
-        x: planetObject.mesh.position.x,
-        y: planetObject.mesh.position.y,
-        z: planetObject.mesh.position.z
-      }
-
-      let x = planetObject.position.x
-      let y = planetObject.position.y
-      let z = planetObject.position.z
-
-      switch (view) {
-        case 'mercury':
-        case 'venus':
-        case 'earth':
-        case 'moon':
-        case 'mars':
-        case 'jupiter':
-        case 'saturn':
-        case 'uranus':
-        case 'neptune':
-          // x = planetObject.position.x
-          // y = planetObject.position.y
-          // z = planetObject.position.z
-          // x = 0
-          // y = 0
-          z = 0
-          break
-      }
-
-      let target = {
-        x: x,
-        y: y,
-        z: z
-      }
-
-      let tween = new TWEEN.Tween(origin).to(target, 1000)
-
-      tween.onUpdate(function () {
-        planetObject.mesh.position.x = origin.x
-        planetObject.mesh.position.y = origin.y
-        planetObject.mesh.position.z = origin.z
-      })
-      tween.easing(TWEEN.Easing.Exponential.Out)
-      tween.start()
-    }
-  }
+  tween.start()
 }
 
 // Render
@@ -225,7 +249,7 @@ window.onload = () => {
       value: camera.position.z
     }
     let zoomEnd = {
-      value: 10
+      value: 15
     }
     let tween = new TWEEN.Tween(zoom).to(zoomEnd, 800)
     tween.onUpdate(() => {
@@ -239,8 +263,9 @@ window.onload = () => {
 }
 
 $('.planet-btn').click(function () {
-  let view = this.dataset.name
-  Object.keys(planets).forEach(item => movePlanet(view, planets[item]))
+  // let view = this.dataset.name
+  moveCamera(planets[this.dataset.name])
+  // Object.keys(planets).forEach(item => movePlanet(view, planets[item]))
 })
 
 function animate () {

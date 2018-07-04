@@ -3,13 +3,13 @@ let planets = {
       name: 'mercury',
       type: 'planet',
       mesh: null,
-      radiusRatio: 14,
+      radiusRatio: 1,
       segments: 50,
       images: ['./assets/images/mercury.jpg'],
       position: {
-        x: -1,
-        y: 0.5,
-        z: 9
+        x: 3,
+        y: 2.5,
+        z: 32
       },
       rotation: {
         x: 0.001,
@@ -20,13 +20,13 @@ let planets = {
       name: 'venus',
       type: 'planet',
       mesh: null,
-      radiusRatio: 12,
+      radiusRatio: 1,
       segments: 50,
       images: ['./assets/images/venus.jpg'],
       position: {
-        x: 0.75,
-        y: -0.5,
-        z: 9
+        x: -0.75,
+        y: -3,
+        z: 20
       },
       rotation: {
         x: 0.001,
@@ -37,7 +37,7 @@ let planets = {
       name: 'earth',
       type: 'planet',
       mesh: null,
-      radiusRatio: 10,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/earth.jpg',
@@ -47,7 +47,7 @@ let planets = {
       position: {
         x: 0,
         y: 0,
-        z: 8
+        z: 9
       },
       rotation: {
         x: 0,
@@ -58,7 +58,7 @@ let planets = {
       name: 'earth-clouds',
       type: 'clouds',
       mesh: null,
-      radiusRatio: 10,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/earth-clouds.png',
@@ -66,7 +66,7 @@ let planets = {
       position: {
         x: 0,
         y: 0,
-        z: 8
+        z: 9
       },
       rotation: {
         x: 0,
@@ -77,7 +77,7 @@ let planets = {
       name: 'moon',
       type: 'planet',
       mesh: null,
-      radiusRatio: 16,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/moon.jpg'
@@ -85,7 +85,7 @@ let planets = {
       position: {
         x: -0.5,
         y: 2.25,
-        z: -2
+        z: 3
       },
       rotation: {
         x: 0.001,
@@ -96,15 +96,15 @@ let planets = {
       name: 'mars',
       type: 'planet',
       mesh: null,
-      radiusRatio: 11,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/mars.jpg'
       ],
       position: {
-        x: 0,
-        y: 2,
-        z: -2
+        x: 3,
+        y: 5,
+        z: -20
       },
       rotation: {
         x: 0.001,
@@ -115,15 +115,15 @@ let planets = {
       name: 'jupiter',
       type: 'planet',
       mesh: null,
-      radiusRatio: 6,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/jupiter.jpg'
       ],
       position: {
-        x: 0.5,
-        y: 3,
-        z: -4
+        x: -0.5,
+        y: -5,
+        z: -60
       },
       rotation: {
         x: 0.001,
@@ -134,15 +134,15 @@ let planets = {
       name: 'saturn',
       type: 'planet',
       mesh: null,
-      radiusRatio: 8,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/saturn.jpg'
       ],
       position: {
         x: 1,
-        y: 2,
-        z: -5
+        y: -3,
+        z: -100
       },
       rotation: {
         x: 0.001,
@@ -153,15 +153,15 @@ let planets = {
       name: 'saturn-ring',
       type: 'rings',
       mesh: null,
-      radiusRatio: 6,
+      radiusRatio: 1,
       segments: .6,
       images: [
         './assets/images/saturn-ring.png'
       ],
       position: {
         x: 1,
-        y: 2,
-        z: -5
+        y: -3,
+        z: -100
       },
       rotation: {
         x: 0,
@@ -172,15 +172,15 @@ let planets = {
       name: 'uranus',
       type: 'planet',
       mesh: null,
-      radiusRatio: 10,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/uranus.jpg'
       ],
       position: {
-        x: 2.25,
-        y: 3,
-        z: -6
+        x: -2.25,
+        y: 4,
+        z: -120
       },
       rotation: {
         x: 0.001,
@@ -191,15 +191,15 @@ let planets = {
       name: 'neptune',
       type: 'planet',
       mesh: null,
-      radiusRatio: 10,
+      radiusRatio: 1,
       segments: 50,
       images: [
         './assets/images/neptune.jpg'
       ],
       position: {
-        x: 2.5,
-        y: 2,
-        z: -6
+        x: -10,
+        y: -10,
+        z: -140
       },
       rotation: {
         x: 0.001,
