@@ -65,6 +65,23 @@ window.onload = () => {
   }, 1000)
 }
 
+$(window).resize(function () {
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  )
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
+
+  if ( $('.card-title').first().text() === '' ) {
+    moveCamera(planets.earth)
+  } else {
+    moveCamera(planets[$('.card-title').first().text()])
+  }
+})
+
 // Add directional and ambient light
 // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-//
 let light = new THREE.DirectionalLight(0xffffff, 1)
@@ -142,9 +159,11 @@ Object.keys(planets).forEach(item => {
 })
 
 let moveCamera = planetObject => {
-  $('.card-wrapper').show().animateCss('fadeInRight')
-  $('.card-title').text(planetObject.name)
-  $('.visit-span').text(`Visit ${planetObject.name}`)
+  if ( $('.container-fluid').css('display') === 'none' ) {
+    $('.card-wrapper').show().animateCss('fadeInRight')
+    $('.card-title').text(planetObject.name)
+    $('.visit-span').text(`Visit ${planetObject.name}`)
+  }
   let origin = {
     x: camera.position.x,
     y: camera.position.y,

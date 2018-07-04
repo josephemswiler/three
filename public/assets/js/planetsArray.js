@@ -102,7 +102,7 @@ let planets = {
         './assets/images/mars.jpg'
       ],
       position: {
-        x: 3,
+        x: 10,
         y: 5,
         z: -20
       },
@@ -141,7 +141,7 @@ let planets = {
       ],
       position: {
         x: 1,
-        y: -3,
+        y: -15,
         z: -100
       },
       rotation: {
@@ -160,7 +160,7 @@ let planets = {
       ],
       position: {
         x: 1,
-        y: -3,
+        y: -15,
         z: -100
       },
       rotation: {
