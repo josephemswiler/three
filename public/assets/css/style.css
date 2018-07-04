@@ -24,6 +24,13 @@ body {
 	color: #fff;
 }
 
+.dropdown-menu {
+	background: rgba(0, 0, 0, 0.5);
+	width: 177px;
+	color: #fff;
+}
+
+
 .planet-button-wrapper {
 	text-align: center;
 	position: absolute; 
@@ -38,7 +45,7 @@ body {
 	border-radius: 2px;
 }
 
-.next-btn:hover {
+.btn-outline-danger:hover {
 	color: #000;
 }
 
@@ -57,7 +64,7 @@ body {
   @-webkit-keyframes bounce {
     0%, 100% {
       -webkit-transform: translateX(0px);
-      color: #fff;
+      color: #CB5A54;
     }
     50% {
       -webkit-transform: translateX(-5px);
@@ -67,7 +74,7 @@ body {
   @keyframes bounce {
     0%, 100% {
       transform: translateX(0px);
-      color: #fff;
+      color: #CB5A54;
     }
     50% {
       transform: translateX(-5px);
@@ -90,7 +97,7 @@ body {
   @-webkit-keyframes bounceLeft {
     0%, 100% {
       -webkit-transform: translateX(0px);
-      color: #fff;
+      color: #CB5A54;
     }
     50% {
       -webkit-transform: translateX(5px);
@@ -100,7 +107,7 @@ body {
   @keyframes bounceLeft {
     0%, 100% {
       transform: translateX(0px);
-      color: #fff;
+      color: #CB5A54;
     }
     50% {
       transform: translateX(5px);

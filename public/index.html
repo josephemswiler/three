@@ -42,8 +42,24 @@
 		</div>
 	</div>
 	<div class="planet-button-wrapper container">
-
-		<button type="button" class="btn btn-outline-primary planet-btn" data-name="mercury">
+			<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+					<div class="btn-group" role="group">
+					  <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-angle-right"></i> Select Planet
+						<i class="fas fa-angle-left"></i></button>
+					  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 177px, 0px);">
+						<a class="dropdown-item planet-btn" data-name="mercury" href="#">Mercury</a>
+						<a class="dropdown-item planet-btn" data-name="venus" href="#">Venus</a>
+						<a class="dropdown-item planet-btn" data-name="earth" href="#">Earth</a>
+						<a class="dropdown-item planet-btn" data-name="moon" href="#">Moon</a>
+						<a class="dropdown-item planet-btn" data-name="mars" href="#">Mars</a>
+						<a class="dropdown-item planet-btn" data-name="jupiter" href="#">Jupiter</a>
+						<a class="dropdown-item planet-btn" data-name="saturn" href="#">Saturn</a>
+						<a class="dropdown-item planet-btn" data-name="uranus" href="#">Uranus</a>
+						<a class="dropdown-item planet-btn" data-name="neptune" href="#">Neptune</a>
+					  </div>
+					</div>
+				  </div>
+		<!-- <button type="button" class="btn btn-outline-primary planet-btn" data-name="mercury">
 			<i class="fas fa-angle-right"></i> Mercury
 			<i class="fas fa-angle-left"></i>
 		</button>
@@ -79,13 +95,14 @@
 		<button type="button" class="btn btn-outline-primary planet-btn" data-name="neptune">
 			<i class="fas fa-angle-right"></i> Neptune
 			<i class="fas fa-angle-left"></i>
-		</button>
+		</button> -->
 	</div>
 
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="http://threejs.org/build/three.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 	<script src="./assets/js/planetsArray.js"></script>
